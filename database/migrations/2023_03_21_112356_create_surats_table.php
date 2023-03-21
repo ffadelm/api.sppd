@@ -13,12 +13,16 @@ return new class extends Migration
     {
         Schema::create('surats', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('surat_id')->constrained();
-            $table->string('nama_kegiatan');
-            $table->text('deskripsi');
-            $table->string('foto')->nullable();
-            $table->string('lokasi')->nullable();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('judul');
+            $table->string('nomor_surat');
+            $table->string('pemberi_perintah');
+            $table->string('anggota_mengikuti');
+            $table->text('lokasi_tujuan');
+            $table->text('keterangan');
+            $table->string('tgl_awal');
+            $table->string('tgl_akhir');
+            $table->boolean('diserahkan')->default(false); // false = belum diserahkan, true = sudah diserahkan
             $table->timestamps();
         });
     }

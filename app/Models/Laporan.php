@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Laporan extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+    protected $casts = [
+        'foto' => 'array'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function surat()
+    {
+        return $this->belongsToMany(Surat::class);
+    }
 }

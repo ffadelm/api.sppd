@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
@@ -13,7 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $user = User::all();
+        return UserResource::collection($user);
     }
 
     /**
@@ -29,7 +31,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = User::create($request->all());
+
+        return [
+            'success' => true,
+            'message' => 'User berhasil ditambahkan',
+            'data' => new UserResource($user)
+        ];
     }
 
     /**
@@ -37,7 +45,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        $user = User::find($user->id);
+        return new UserResource($user);
     }
 
     /**
@@ -53,7 +62,13 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $user->update($request->all());
+
+        return [
+            'success' => true,
+            'message' => 'User berhasil diupdate',
+            'data' => new UserResource($user)
+        ];
     }
 
     /**
@@ -61,6 +76,11 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return [
+            'success' => true,
+            'message' => 'User berhasil dihapus'
+        ];
     }
 }
