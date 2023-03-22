@@ -46,7 +46,14 @@ class UserController extends Controller
     public function show(User $user)
     {
         $user = User::find($user->id);
-        return new UserResource($user);
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => 'User tidak ditemukan'
+            ], 400);
+        } else {
+            return new UserResource($user);
+        }
     }
 
     /**
@@ -64,11 +71,18 @@ class UserController extends Controller
     {
         $user->update($request->all());
 
-        return [
-            'success' => true,
-            'message' => 'User berhasil diupdate',
-            'data' => new UserResource($user)
-        ];
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => 'User tidak ditemukan'
+            ], 400);
+        } else {
+            return [
+                'success' => true,
+                'message' => 'User berhasil diupdate',
+                'data' => new UserResource($user)
+            ];
+        }
     }
 
     /**
@@ -78,9 +92,16 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return [
-            'success' => true,
-            'message' => 'User berhasil dihapus'
-        ];
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => 'User tidak ditemukan'
+            ], 400);
+        } else {
+            return [
+                'success' => true,
+                'message' => 'User berhasil dihapus'
+            ];
+        }
     }
 }
