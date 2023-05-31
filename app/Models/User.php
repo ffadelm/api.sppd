@@ -46,7 +46,7 @@ class User extends Authenticatable
 
     public function surat()
     {
-        return $this->belongsToMany(Surat::class)->cascadeDelete();
+        return $this->belongsTo(Surat::class)->cascadeDelete();
     }
 
     public function laporan()

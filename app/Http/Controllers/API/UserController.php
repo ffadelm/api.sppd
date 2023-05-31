@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -14,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::all();
+        $user = User::orderBy('nidn')->get();
         return UserResource::collection($user);
     }
 
@@ -31,7 +32,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::create($request->all());
+        $user = new User();
+        $user->name = $request->name;
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->nidn = $request->nidn;
+        $user->jabatan = $request->jabatan;
+        $user->password = Hash::make($request->password);
+        $user->role = $request->has('role') ? $request->role : false;
+
+        $user->save();
 
         return [
             'success' => true,

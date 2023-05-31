@@ -12,9 +12,17 @@ class SuratController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $surat = Surat::all();
+        $userId = $request->input('user_id');
+
+        $surat = Surat::when($userId, function ($query, $userId) {
+            return $query->where('user_id', $userId);
+        })
+            ->orderByRaw('CASE WHEN validasi = 0 THEN 0 ELSE 1 END') // Mengurutkan berdasarkan validasi, validasi 0 akan tampil paling awal
+            ->latest('updated_at')
+            ->get();
+
         return SuratResource::collection($surat);
     }
 
@@ -82,5 +90,14 @@ class SuratController extends Controller
             'success' => true,
             'message' => 'Surat berhasil dihapus'
         ];
+    }
+
+    public function serahkan($id)
+    {
+        $surat = Surat::findOrFail($id);
+        $surat->diserahkan = 1;
+        $surat->save();
+
+        return response()->json(['success' => true, 'message' => 'Surat berhasil diserahkan']);
     }
 }

@@ -26,11 +26,12 @@ class SuratFactory extends Factory
                 'Analisis Pelaksanaan Perjalanan Dinas Dalam Rangka Penyelenggaraan Kerjasama Antar Lembaga Pemerintah.'
             ]),
             'nomor_surat' => fake()->unique()->randomElement([
-                '123/UMY/TI/2023',
-                '456/UMY/TI/2023',
-                '789/UMY/TI/2023',
-                '101/UMY/TI/2023',
-                '112/UMY/TI/2023',
+                '123/SPD/UMY/TI/2023',
+                '456/SPD/UMY/TI/2023',
+                '789/SPD/UMY/TI/2023',
+                '012/SPD/UMY/TI/2023',
+                '345/SPD/UMY/TI/2023',
+
             ]),
             'pemberi_perintah' => fake()->name(),
             'anggota_mengikuti' => [
@@ -41,8 +42,9 @@ class SuratFactory extends Factory
             ],
             'lokasi_tujuan' => fake()->address(),
             'keterangan' => fake()->text(),
-            'tgl_awal' => fake()->date(),
-            'tgl_akhir' => fake()->date(),
+            'tgl_awal' => fake()->dateTimeBetween('-5 months', 'now')->format('Y-m-d'),
+            'tgl_akhir' => fake()->dateTimeBetween('now', '+2 months')->format('Y-m-d'),
+            'validasi' => fake()->boolean(),
             'diserahkan' => fake()->boolean(),
         ];
     }

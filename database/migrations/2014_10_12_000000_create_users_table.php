@@ -16,11 +16,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('username')->unique()->nullable();
             $table->string('email')->unique();
-            $table->string('nip')->nullable();
+            $table->string('nidn')->nullable();
             $table->string('jabatan')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('status')->default('aktif');
+            $table->boolean('role')->default(false); // false = user, true = admin
             $table->rememberToken();
             $table->timestamps();
         });

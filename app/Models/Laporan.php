@@ -22,6 +22,6 @@ class Laporan extends Model
 
     public function surat()
     {
-        return $this->belongsToMany(Surat::class);
+        return $this->belongsTo(Surat::class);
     }
 }

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('keterangan');
             $table->string('tgl_awal');
             $table->string('tgl_akhir');
+            $table->boolean('validasi')->default(false); // false = belum divalidasi, true = sudah divalidasi
             $table->boolean('diserahkan')->default(false); // false = belum diserahkan, true = sudah diserahkan
             $table->timestamps();
         });

@@ -14,6 +14,25 @@ class SuratResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'user_id' => [
+                'id' => $this->user->id,
+                'name' => $this->user->name,
+                'nidn' => $this->user->nidn,
+            ],
+            'judul' => $this->judul,
+            'nomor_surat' => $this->nomor_surat,
+            'pemberi_perintah' => $this->pemberi_perintah,
+            'anggota_mengikuti' => $this->anggota_mengikuti,
+            'lokasi_tujuan' => $this->lokasi_tujuan,
+            'keterangan' => $this->keterangan,
+            'tgl_awal' => $this->tgl_awal,
+            'tgl_akhir' => $this->tgl_akhir,
+            'validasi' => $this->validasi,
+            'diserahkan' => $this->diserahkan,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
     }
 }

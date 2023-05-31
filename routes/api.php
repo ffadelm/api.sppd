@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\Auth\LoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
@@ -22,5 +23,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('surat', SuratController::class);
+Route::post('/surat/{id}/serahkan', [SuratController::class, 'serahkan']);
+
+
 Route::apiResource('laporan', LaporanController::class);
+Route::get('laporan/user/{id}', [LaporanController::class, 'getByUserID']);
 Route::apiResource('user', UserController::class);
+
+Route::post('/login', [LoginController::class, 'index']);
+Route::get('/logout', [LoginController::class, 'logout']);

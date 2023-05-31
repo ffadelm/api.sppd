@@ -13,9 +13,14 @@ class LaporanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $laporan = Laporan::all();
+        $userId = $request->input('user_id');
+
+        $laporan = Laporan::when($userId, function ($query, $userId) {
+            return $query->where('user_id', $userId);
+        })->latest('updated_at')->get();
+
         return LaporanResource::collection($laporan);
     }
 
@@ -145,5 +150,20 @@ class LaporanController extends Controller
                 'message' => 'Data gagal dihapus'
             ]);
         }
+    }
+
+    public function getByUserId($id)
+    {
+        $data = Laporan::where('user_id', $id)->get();
+        if (is_null($data)) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Data tidak ditemukan.',
+                404
+            ]);
+        }
+        return response()->json(
+            $data
+        );
     }
 }
