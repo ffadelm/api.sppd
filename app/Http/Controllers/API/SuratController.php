@@ -26,6 +26,25 @@ class SuratController extends Controller
         return SuratResource::collection($surat);
     }
 
+    public function search(Request $request)
+    {
+        $searchQuery = $request->input('search');
+
+        $surat = Surat::when($searchQuery, function ($query, $searchQuery) {
+            return $query->where(function ($query) use ($searchQuery) {
+                $query->where('judul', 'like', '%' . $searchQuery . '%')
+                    ->orWhereHas('user', function ($query) use ($searchQuery) {
+                        $query->where('name', 'like', '%' . $searchQuery . '%');
+                    });
+            });
+        })
+            ->orderByRaw('CASE WHEN validasi = 0 THEN 0 ELSE 1 END')
+            ->latest('updated_at')
+            ->get();
+
+        return SuratResource::collection($surat);
+    }
+
     /**
      * Show the form for creating a new resource.
      */

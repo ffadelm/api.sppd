@@ -13,10 +13,17 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user = User::orderBy('nidn')->get();
-        return UserResource::collection($user);
+        $search = $request->query('search');
+
+        // Query pencarian
+        $users = User::orderBy('nidn')
+            ->where('name', 'like', '%' . $search . '%')
+            ->orWhere('nidn', 'like', '%' . $search . '%')
+            ->get();
+
+        return UserResource::collection($users);
     }
 
     /**
