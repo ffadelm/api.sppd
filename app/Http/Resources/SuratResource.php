@@ -20,6 +20,7 @@ class SuratResource extends JsonResource
                 'id' => $this->user->id,
                 'name' => $this->user->name,
                 'nidn' => $this->user->nidn,
+                'jabatan' => $this->user->jabatan,
             ],
             'judul' => $this->judul,
             'nomor_surat' => $this->nomor_surat,

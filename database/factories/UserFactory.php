@@ -20,7 +20,7 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'username' => fake()->unique()->userName(),
-            'email' => fake()->unique()->freeEmail(),
+            'email' => fake()->unique()->safeEmail(),
             'nidn' => fake()->unique()->randomElement([
                 '1234567890',
                 '0987654321',
@@ -36,9 +36,27 @@ class UserFactory extends Factory
                 '0987654326',
                 '1234567896'
             ]),
-            'jabatan' => fake()->jobTitle(),
+            'jabatan' => fake()->randomElement([
+                'Ketua Jurusan',
+                'Sekretaris Jurusan',
+                'Ketua Program Studi',
+                'Sekretaris Program Studi',
+                'Dosen',
+                'Kepala Laboratorium',
+                'Kepala Pusat Studi',
+                'Kepala Pusat Penelitian',
+                'Kepala Pusat Pengabdian Masyarakat',
+                'Kepala Pusat Inovasi dan Kewirausahaan',
+                'Kepala Pusat Karir',
+                'Kepala Pusat Bahasa',
+                'Kepala Pusat Kajian',
+                'Kepala Pusat Pengembangan Karakter',
+                'Kepala Pusat Pengembangan Sumber Daya Manusia',
+                'Kepala Pusat Pengembangan Keprofesian Berkelanjutan',
+                'Kepala Pusat Pengembangan Kewirausahaan',
+            ]),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
+            'remember_token' => Str::random(13),
             'email_verified_at' => now(),
         ];
     }

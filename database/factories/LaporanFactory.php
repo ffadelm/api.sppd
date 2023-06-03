@@ -17,14 +17,22 @@ class LaporanFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => mt_rand(1, 5),
-            'surat_id' => mt_rand(1, 5),
+            'user_id' => mt_rand(1, 13),
+            'surat_id' => mt_rand(1, 13),
             'nama_kegiatan' => fake()->randomElement([
-                'Analisis Faktor-faktor yang Mempengaruhi Kinerja Dosen dalam Proses Pembelajaran di Luar Kota',
-                'Evaluasi Program Pelatihan Bagi Dosen untuk Meningkatkan Kualitas Pembelajaran di Luar Kota',
-                'Efektivitas Pemanfaatan Teknologi Informasi dalam Proses Pembelajaran Dosen saat Melakukan Perjalanan Dinas',
-                'Identifikasi Faktor-faktor yang Mempengaruhi Kinerja Dosen dalam Pelaksanaan Penelitian di Luar Kota',
-                'Analisis Pelaksanaan Perjalanan Dinas Dalam Rangka Penyelenggaraan Kerjasama Antar Lembaga Pemerintah.'
+                'Analisis Data Survei Kepuasan Pelanggan',
+                'Evaluasi Implementasi Program Pendidikan Inklusif',
+                'Penelitian Eksperimental tentang Efek Pupuk Organik pada Pertumbuhan Tanaman Padi',
+                'Pemantauan Kualitas Udara di Area Perkotaan',
+                'Pelatihan Keterampilan Komunikasi Efektif untuk Tim Penjualan',
+                'Studi Kasus Implementasi Sistem Manajemen Mutu ISO 9001',
+                'Pengembangan Aplikasi Mobile untuk Pelayanan Kesehatan Masyarakat',
+                'Audit Keamanan Jaringan Komputer Perusahaan',
+                'Evaluasi Dampak Program Bantuan Sosial bagi Masyarakat Miskin',
+                'Analisis Kebutuhan Pelatihan Profesional untuk Tenaga Kerja Industri Kreatif',
+                'Studi Literatur tentang Dampak Perubahan Iklim terhadap Ekosistem Laut',
+                'Penyusunan Rencana Bisnis Startup Teknologi Berbasis AI',
+                'Evaluasi Kinerja Proyek Konstruksi Gedung Pemerintah'
             ]),
             'deskripsi' => fake()->text(),
             'foto' => [

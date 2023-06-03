@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         User::factory(13)->create();
-        Surat::factory(5)->create();
-        Laporan::factory(5)->create();
+        Surat::factory(13)->create();
+        Laporan::factory(13)->create();
     }
 }
