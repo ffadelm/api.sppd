@@ -20,11 +20,13 @@ class LaporanResource extends JsonResource
                 'id' => $this->user->id,
                 'name' => $this->user->name,
                 'nidn' => $this->user->nidn,
+                'jabatan' => $this->user->jabatan,
             ],
             'surat_id' => [
                 'id' => $this->surat->id,
                 'judul' => $this->surat->judul,
                 'nomor_surat' => $this->surat->nomor_surat,
+                'anggota_mengikuti' => $this->surat->anggota_mengikuti,
                 'tgl_awal' => $this->surat->tgl_awal,
                 'tgl_akhir' => $this->surat->tgl_akhir,
                 'tujuan' => $this->surat->lokasi_tujuan,
