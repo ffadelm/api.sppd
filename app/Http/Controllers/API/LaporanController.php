@@ -19,7 +19,7 @@ class LaporanController extends Controller
 
         $laporan = Laporan::when($userId, function ($query, $userId) {
             return $query->where('user_id', $userId);
-        })->latest('updated_at')->get();
+        })->get();
 
         return LaporanResource::collection($laporan);
     }
