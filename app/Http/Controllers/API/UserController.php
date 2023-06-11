@@ -47,6 +47,7 @@ class UserController extends Controller
         $user->jabatan = $request->jabatan;
         $user->password = Hash::make($request->password);
         $user->role = $request->has('role') ? $request->role : false;
+        $user->email_verified_at = now();
 
         $user->save();
 
