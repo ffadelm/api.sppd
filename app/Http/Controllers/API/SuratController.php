@@ -26,9 +26,29 @@ class SuratController extends Controller
         return SuratResource::collection($surat);
     }
 
+    public function getSuratSelesai(Request $request)
+    {
+        $user_id = $request->input('user_id');
+
+        $surat = Surat::where('diserahkan', 1)
+            ->where('user_id', $user_id)
+            ->get();
+
+        return SuratResource::collection($surat);
+    }
+
+    public function getAllSuratSelesai()
+    {
+        $surat = Surat::where('diserahkan', 1)
+            ->get();
+
+        return SuratResource::collection($surat);
+    }
+
     public function search(Request $request)
     {
         $searchQuery = $request->input('search');
+        $userId = $request->input('user_id');
 
         $surat = Surat::when($searchQuery, function ($query, $searchQuery) {
             return $query->where(function ($query) use ($searchQuery) {
@@ -38,6 +58,9 @@ class SuratController extends Controller
                     });
             });
         })
+            ->when($userId, function ($query, $userId) {
+                return $query->where('user_id', $userId);
+            })
             ->orderByRaw('CASE WHEN validasi = 0 THEN 0 ELSE 1 END')
             ->latest('updated_at')
             ->get();

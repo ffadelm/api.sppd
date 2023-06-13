@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('judul');
             $table->string('nomor_surat');
             $table->string('pemberi_perintah');
-            $table->string('anggota_mengikuti')->nullable();
+            $table->text('anggota_mengikuti')->nullable();
             $table->text('lokasi_tujuan');
             $table->text('keterangan');
             $table->string('tgl_awal');

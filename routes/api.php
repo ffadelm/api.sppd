@@ -25,7 +25,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('surat', SuratController::class);
 Route::post('/surat/{id}/serahkan', [SuratController::class, 'serahkan']);
 Route::get('/surats', [SuratController::class, 'search']);
-
+Route::get('/surat-selesai', [SuratController::class, 'getSuratSelesai']);
+Route::get('/surats-selesai', [SuratController::class, 'getAllSuratSelesai']);
 
 
 Route::apiResource('laporan', LaporanController::class);
