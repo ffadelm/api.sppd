@@ -26,6 +26,26 @@ class SuratController extends Controller
         return SuratResource::collection($surat);
     }
 
+    public function getValidasi()
+    {
+        $surat = Surat::where('validasi', 1)
+            ->get();
+
+        return SuratResource::collection($surat);
+    }
+
+    public function getValidasiUID(Request $request)
+    {
+        $userId = $request->input('user_id');
+
+        $surat = Surat::where('validasi', 1)
+            ->where('user_id', $userId)
+            ->get();
+
+        return SuratResource::collection($surat);
+    }
+
+
     public function getSuratSelesai(Request $request)
     {
         $user_id = $request->input('user_id');

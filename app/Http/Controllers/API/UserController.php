@@ -17,7 +17,6 @@ class UserController extends Controller
     {
         $search = $request->query('search');
 
-        // Query pencarian
         $users = User::orderBy('nidn')
             ->where('name', 'like', '%' . $search . '%')
             ->orWhere('nidn', 'like', '%' . $search . '%')
@@ -45,7 +44,6 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->nidn = $request->nidn;
         $user->jabatan = $request->jabatan;
-        $user->sebagai = $request->sebagai;
         $user->password = Hash::make($request->password);
         $user->role = $request->has('role') ? $request->role : false;
         $user->email_verified_at = now();

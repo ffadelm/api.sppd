@@ -37,7 +37,7 @@ class LaporanController extends Controller
      */
     public function store(Request $request)
     {
-        $allowedfileExtension = ['jpg', 'png', 'jpeg', 'heic', 'heif'];
+        $allowedfileExtension = ['jpg', 'png', 'jpeg', 'heic', 'heif', 'webp'];
         $photos = $request->foto;
 
         foreach ($photos as $photo) {

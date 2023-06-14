@@ -50,18 +50,10 @@ class SuratFactory extends Factory
                 '0013/A.7-II/TI/I/2022'
             ]),
             'pemberi_perintah' => fake()->name(),
-            // 'anggota_mengikuti' => [
-            //     fake()->name(),
-            //     fake()->name(),
-            //     fake()->name(),
-            //     fake()->name(),
-            //     fake()->name(),
-            // ],
             'anggota_mengikuti' => User::get()->map(function ($user) {
                 return [
                     'name' => $user->name,
                     'sebagai' => $user->sebagai,
-                    // tambahkan atribut lain yang ingin Anda masukkan
                 ];
             })->random(5)->toArray(),
             'lokasi_tujuan' => fake()->streetAddress(),
