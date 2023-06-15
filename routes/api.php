@@ -31,6 +31,8 @@ Route::get('/surats-selesai', [SuratController::class, 'getAllSuratSelesai']);
 
 Route::get('/surat-validasi', [SuratController::class, 'getValidasi']);
 Route::get('/surat-validasiuid', [SuratController::class, 'getValidasiUID']);
+Route::get('/surat-validasiyears', [SuratController::class, 'getValidasibyYears']);
+Route::get('/surat-validasiyearsuid', [SuratController::class, 'getValidasibyYearsUID']);
 
 
 Route::apiResource('laporan', LaporanController::class);

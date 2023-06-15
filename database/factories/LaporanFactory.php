@@ -18,7 +18,7 @@ class LaporanFactory extends Factory
     {
         return [
             'user_id' => mt_rand(1, 13),
-            'surat_id' => mt_rand(1, 13),
+            'surat_id' => mt_rand(1, 20),
             'nama_kegiatan' => fake()->randomElement([
                 'Analisis Data Survei Kepuasan Pelanggan',
                 'Evaluasi Implementasi Program Pendidikan Inklusif',

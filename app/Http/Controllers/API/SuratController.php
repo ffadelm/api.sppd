@@ -45,6 +45,36 @@ class SuratController extends Controller
         return SuratResource::collection($surat);
     }
 
+    public function getValidasibyYears(Request $request)
+    {
+        $validasi = $request->query('validasi');
+        $tahun = $request->query('tahun');
+
+        $suratValidasi = Surat::where('validasi', $validasi)
+            ->whereYear('tgl_awal', $tahun)
+            ->get();
+
+        return response()->json([
+            'data' => $suratValidasi,
+        ]);
+    }
+
+    public function getValidasibyYearsUID(Request $request)
+    {
+        $validasi = $request->query('validasi');
+        $tahun = $request->query('tahun');
+        $userId = $request->query('user_id');
+
+        $suratValidasi = Surat::where('validasi', $validasi)
+            ->whereYear('tgl_awal', $tahun)
+            ->where('user_id', $userId)
+            ->get();
+
+        return response()->json([
+            'data' => $suratValidasi,
+        ]);
+    }
+
 
     public function getSuratSelesai(Request $request)
     {
